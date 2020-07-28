@@ -1,0 +1,17 @@
+backend:
+  name: github
+  repo: xxlee0927/xxlee
+media_folder: static/assets
+public_folder: /assets
+collections:
+  - name: posts
+    label: Posts
+    folder: posts
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: created_time, label: Create Time, widget: datetime }
+      - { name: updated_time, label: Last Update Time, widget: datetime }
+      - { name: tags, label: Tags, wdiget: list, label_singular: true }
+      - { name: thumbnail, label: Featured Image, widget: image }
+      - { name: body, label: Body, widget: markdown }
