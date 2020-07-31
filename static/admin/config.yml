@@ -8,6 +8,7 @@ collections:
     label: Posts
     folder: posts
     create: true
+    slug: '{{slug}}'
     fields:
       - { name: title, label: Title }
       - { name: created_time, label: Create Time, widget: datetime }
