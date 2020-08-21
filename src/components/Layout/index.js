@@ -22,7 +22,8 @@ export default function Layout({ children }) {
           </Box>
         </Toolbar>
       </AppBar>
-      {children}
+
+      <Box mt={8}>{children}</Box>
     </div>
   );
 }

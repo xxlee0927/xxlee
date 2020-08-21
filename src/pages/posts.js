@@ -1,20 +1,24 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React, { useMemo } from 'react';
+import { Link, graphql } from 'gatsby';
+import Layout from '@/components/Layout';
 
-export default function posts({ data }) {
+export default function Posts({ data }) {
   const {
     allMarkdownRemark: { edges },
   } = data;
 
-  const postsData = edges.map(edge => edge.node.frontmatter);
+  const postsData = useMemo(() => {
+    return edges.map(({ node }) => ({ title: node.frontmatter.title, slug: node.fields.slug }));
+  }, [edges]);
+
   return (
-    <div>
+    <Layout>
       {postsData.map(post => (
-        <div>
+        <Link key={post.slug} to={post.slug}>
           <h6>{post.title}</h6>
-        </div>
+        </Link>
       ))}
-    </div>
+    </Layout>
   );
 }
 
@@ -23,6 +27,9 @@ export const query = graphql`
     allMarkdownRemark {
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             title
           }
